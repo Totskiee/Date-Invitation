@@ -1,10 +1,7 @@
 const noBtn = document.getElementById('noBtn');
 const yesBtn = document.getElementById('yesBtn');
 
-// Emojis list
 const emojis = ["😂","🥲","🤔","🙃","🤪","😎","🤯","💀","🍕","💩"];
-
-// Stickers/GIFs list (local files or URLs)
 const gifs = [
     "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExczJjN2Vsa2trYjF0emtsanJxNHFmeWJxYWkzZmJzd3AwZnUwMnJhMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/33avHSagADkpr7y1md/giphy.gif",
     "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExanBnaHhtbHkzY3h3ZWowMnlzcnZ4bmZsdHpieXBzdDB4NjNrdmpleCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Tgn6SO4H7rJkvU4XyS/giphy.gif",
@@ -12,20 +9,23 @@ const gifs = [
     "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcnVnZGJqNW4xczM2aGFmOTIwbmZzMWZkM3hmbGd4Y2cwNmVxdWhhNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/gXEguRNQJyQEUgYHRO/giphy.gif",
 ];
 
+const maxFontSize = 24; // px
 
-noBtn.addEventListener('mouseenter', () => {
-    // Move button randomly
-    const x = Math.floor(Math.random() * (window.innerWidth - noBtn.offsetWidth));
-    const y = Math.floor(Math.random() * (window.innerHeight - noBtn.offsetHeight));
+function hoverNoButton() {
+    // Move button randomly but stay inside screen
+    const x = Math.floor(Math.random() * (window.innerWidth - noBtn.offsetWidth - 20));
+    const y = Math.floor(Math.random() * (window.innerHeight - noBtn.offsetHeight - 20));
     noBtn.style.position = 'absolute';
     noBtn.style.left = x + 'px';
     noBtn.style.top = y + 'px';
 
-    // Grow button
+    // Grow button but limit max size
     const currentSize = parseInt(window.getComputedStyle(noBtn).fontSize);
-    noBtn.style.fontSize = (currentSize + 2) + 'px';
+    if (currentSize < maxFontSize) {
+        noBtn.style.fontSize = (currentSize + 2) + 'px';
+    }
 
-    // Change button text
+    // Change text
     const messages = ["Think sajd hehe","Think balik HAHAH","Basin pede pana ma yes?","Don't be shy ba HAHAH!","Sure najd na?", "lainaa:("];
     noBtn.textContent = messages[Math.floor(Math.random() * messages.length)];
 
@@ -35,35 +35,37 @@ noBtn.addEventListener('mouseenter', () => {
         emoji.classList.add('emoji');
         emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
         document.body.appendChild(emoji);
-        emoji.style.left = (x + Math.random() * 100) + 'px';
-        emoji.style.top = (y + Math.random() * 50) + 'px';
+        emoji.style.left = Math.min(x + Math.random() * 100, window.innerWidth - 30) + 'px';
+        emoji.style.top = Math.min(y + Math.random() * 50, window.innerHeight - 30) + 'px';
         setTimeout(() => emoji.remove(), 2000);
     }
 
-    // Spawn GIF/sticker
+    // Spawn GIF
     const gif = document.createElement('img');
     gif.src = gifs[Math.floor(Math.random() * gifs.length)];
     gif.classList.add('sticker');
     document.body.appendChild(gif);
-    gif.style.left = (x + Math.random() * 100) + 'px';
-    gif.style.top = (y + Math.random() * 50) + 'px';
-    setTimeout(() => gif.remove(), 2000);
-});
+    gif.style.left = Math.min(x + Math.random() * 100, window.innerWidth - 200) + 'px';
+    gif.style.top = Math.min(y + Math.random() * 50, window.innerHeight - 200) + 'px';
+    setTimeout(() => gif.remove(), 7000);
+}
 
-// YES button behavior
+// Attach hover for desktop and touch for phones
+noBtn.addEventListener('mouseenter', hoverNoButton);
+noBtn.addEventListener('touchstart', hoverNoButton);
+
+// YES button click
 yesBtn.addEventListener('click', () => {
     noBtn.style.display = 'none';
     yesBtn.textContent = "Yay! bengbang nadis HAHAHAHAHAH jok lungs";
 
-    // Optional: spawn lots of GIFs for celebration
     for (let i = 0; i < 10; i++) {
         const gif = document.createElement('img');
         gif.src = gifs[Math.floor(Math.random() * gifs.length)];
         gif.classList.add('sticker');
         document.body.appendChild(gif);
-        gif.style.left = Math.random() * window.innerWidth + 'px';
-        gif.style.top = Math.random() * window.innerHeight + 'px';
+        gif.style.left = Math.random() * (window.innerWidth - 200) + 'px';
+        gif.style.top = Math.random() * (window.innerHeight - 200) + 'px';
         setTimeout(() => gif.remove(), 3000);
     }
 });
-
