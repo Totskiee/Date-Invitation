@@ -26,7 +26,7 @@ function hoverNoButton() {
     }
 
     // Change text
-    const messages = ["Think sajd hehe","Think balik HAHAH","Basin pede pana ma yes?","Don't be shy ba HAHAH!","Sure najd na?", "lainaa:("];
+    const messages = ["Think sajd hehe","Think balik HAHAH","Basin pede pana ma yes?","Don't be shy ba HAHAH!","Sure najd na?", "lainaa:(", "yes na guro na uy HAHA", "YES IS THE WAY!", "Ayaw pag NO HAHA", "Sige na HAHAHA", "AW WAY DAOG HAHA"];
     noBtn.textContent = messages[Math.floor(Math.random() * messages.length)];
 
     // Spawn emojis
