@@ -41,6 +41,14 @@ button {
 #noBtn {
     background-color: #920b0b;
     color: white;
+    #noBtn {
+    max-width: 90%;       /* never wider than screen */
+    max-height: 80px;     /* limit height */
+    font-size: clamp(16px, 2.5vw, 24px); /* responsive font size */
+    padding: 10px 20px;  
+    position: relative;
+    z-index: 3;
+}
 }
 
 .emoji {
