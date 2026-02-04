@@ -69,3 +69,27 @@ yesBtn.addEventListener('click', () => {
         setTimeout(() => gif.remove(), 3000);
     }
 });
+
+yesBtn.addEventListener('click', () => {
+    // Send notification to backend
+    fetch('/yes-click', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user: 'Guest' }) // you can change 'Guest' to a name input later
+    });
+
+    // Hide No button and change text
+    noBtn.style.display = 'none';
+    yesBtn.textContent = "Yay! Thanks for saying YES! ❤️";
+
+    // Optional: spawn celebration GIFs
+    for (let i = 0; i < 10; i++) {
+        const gif = document.createElement('img');
+        gif.src = gifs[Math.floor(Math.random() * gifs.length)];
+        gif.classList.add('sticker');
+        document.body.appendChild(gif);
+        gif.style.left = Math.random() * (window.innerWidth - 200) + 'px';
+        gif.style.top = Math.random() * (window.innerHeight - 200) + 'px';
+        setTimeout(() => gif.remove(), 3000);
+    }
+});
