@@ -1,0 +1,108 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #ffe6f0;
+}
+
+.container {
+    text-align: center;
+    background: #fff0f5;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+     z-index: 2; 
+}
+
+#yesBtn {
+    background-color: #ff4d6d;
+    color: white;
+    padding: 25px 40px;  /* make button bigger */
+    font-size: 22px;      /* increase text size */
+    border-radius: 12px;  /* optional, more rounded */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 3;
+}
+
+#noBtn {
+    background-color: #920b0b;
+    color: white;
+}
+
+.emoji {
+    position: absolute;
+    font-size: 24px;
+    pointer-events: none; /* So it doesn’t block the buttons */
+    animation: floatUp 7s ease forwards;
+}
+
+@keyframes floatUp {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-50px); }
+}
+
+
+.sticker {
+    position: absolute;
+    width: 400px; /* size of your sticker */
+    pointer-events: none; /* so it doesn't block buttons */
+    animation: floatUpGif 7s ease forwards;
+    
+}
+
+@keyframes floatUpGif {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-50px); }
+}
+
+
+/* For devices with a max width of 600px (phones) */
+@media only screen and (max-width: 600px) {
+    body {
+        background-color: #ffe6f0;
+    }
+
+    .container {
+        width: 90%;  /* container shrinks for phones */
+        padding: 30px;
+    }
+
+    button {
+        font-size: 16px;  /* smaller buttons */
+        padding: 8px 15px;
+    }
+
+    .sticker {
+        width: 120px;  /* smaller GIFs on phones */
+    }
+}
+
+/* For devices wider than 600px (tablets and laptops) */
+@media only screen and (min-width: 601px) {
+    .container {
+        width: 400px; /* default container size */
+    }
+
+    button {
+        font-size: 18px;
+        padding: 10px 20px;
+    }
+
+    .sticker {
+        width: 200px; /* bigger GIFs on laptops */
+    }
+}
