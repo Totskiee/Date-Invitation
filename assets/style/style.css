@@ -51,7 +51,7 @@ button {
     font-size: clamp(16px, 2.5vw, 24px); /* responsive font size */
     padding: 10px 20px;  
     position: relative;
-    z-index: 3;
+    z-index: 4;
 }
 }
 
