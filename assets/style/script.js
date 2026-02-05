@@ -80,7 +80,7 @@ yesBtn.addEventListener('click', () => {
 
     // Hide No button and change text
     noBtn.style.display = 'none';
-    yesBtn.textContent = "Yay! Thanks for saying YES! ❤️";
+    yesBtn.textContent = "Yay! bengbang nadis HAHAHAHAHAH jok lungs";
 
     // Optional: spawn celebration GIFs
     for (let i = 0; i < 10; i++) {
